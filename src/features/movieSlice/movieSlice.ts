@@ -25,6 +25,9 @@ export const tmdbApi = createApi({
         }),
         getMovieVideo: builder.query({
             query: (id) => `movie/${id}/videos?language=en-US&api_key=${API_KEY}`
+        }),
+        getSearchedMovies: builder.query<DataType, {query: string; page: number}>({
+            query: (args) => `search/multi?query=${args.query}&include_adult=false&language=en-US&page=${args.page}&api_key=${API_KEY}`
         })
     })
 })
@@ -36,4 +39,5 @@ export const {
     useGetMovieDetailsQuery,
     useGetMovieCastQuery,
     useGetMovieVideoQuery,
+    useGetSearchedMoviesQuery,
 } = tmdbApi

@@ -6,6 +6,7 @@ import Tv from './pages/Tv'
 import Saved from './pages/Saved'
 import Movies from './pages/Movies'
 import Details from './pages/Details'
+import SearchPage from './pages/SearchPage'
 // import Counter from './components/Counter'
 // import MovieCard from './components/MovieCard';
 // import { useGetUpcomingMoviesQuery } from './features/movieSlice/movieSlice'
@@ -43,6 +44,7 @@ function App() {
             <Route path="/movies" element={<Movies />}/>
             <Route path="/saved" element={<Saved />}/>
             <Route path="/details/:id" element={<Details />}/>
+            <Route path="/search" element={<SearchPage />}/>
         </Route>
       </Routes>
     </BrowserRouter>

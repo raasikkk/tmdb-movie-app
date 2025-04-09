@@ -3,9 +3,13 @@ import { MovieType } from "../types/MovieType"
 import { Star, Bookmark } from 'lucide-react';
 import moment from 'moment'
 
-const MovieCard = ({ data }: MovieType) => {
+interface MovieCardProps {
+    data: MovieType;
+}
+
+const MovieCard = ({ data }: MovieCardProps) => {
     return ( //min-w-[230px] max-w-[230px]
-        <Link to={`/details/${data.id}`} className="border-2 relative h-80  flex items-end border-none rounded-xl">
+        <Link to={`/details/${data.id}`} className="border-2 relative h-80  flex items-end border-none rounded-xl hover:scale-105 transition">
             <img 
                 src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} 
                 alt={data.original_title} 

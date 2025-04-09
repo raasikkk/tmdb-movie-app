@@ -7,8 +7,8 @@ const Main = () => {
   const {data, isLoading, error} = useGetPopularMoviesQuery();
 
   if (isLoading) return <Loader />
-
   if (error) return <div>error</div>
+  if (!data) return null
 
   return (
     <>

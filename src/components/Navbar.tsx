@@ -1,7 +1,23 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { Search, House, Clapperboard, TvMinimal, Bookmark } from 'lucide-react';
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const location = useLocation()
+  const removeSpace = location?.search?.slice(3)?.split("%20")?.join(" ")
+  const [query, setQuery] = useState(removeSpace)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (query) {
+      navigate(`/search?q=${query}`)
+    }
+  }, [query])
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+  }
+
   return (
     <>
       <div className="fixed top-0 w-full h-16 z-40 backdrop-brightness-50">
@@ -24,17 +40,19 @@ const Navbar = () => {
               </div>
               
               <div className="flex items-center gap-10">
-                <div className="flex items-center">
+                <form className="flex items-center" onSubmit={handleSubmit}>
                   <input 
                     type="text" 
                     id="search"
                     className="hidden sm:block outline-none ml-5 text-sm lg:text-base w-2/3"
                     placeholder="Search here..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                   />
                   <label htmlFor="search">
                     <Search />
                   </label>
-                </div>
+                </form>
                 <img 
                   src="/user.png" 
                   alt="profile"

@@ -19,7 +19,6 @@ const Details = () => {
 
     if (isLoading) return <Loader />
     if (error) return <div>error</div>
-    console.log(data)
 
     const duration = (data.runtime / 60)?.toFixed(1).split(".")
     const director = castData.crew.filter((person: CrewType) => person.job === "Director")
