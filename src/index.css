@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat";
+  color: white;
+}
+
+body {
+  background-color: #1E1E1E;
+}
+
+.mobile-link {
+  @apply flex flex-col justify-center items-center;   
+}
