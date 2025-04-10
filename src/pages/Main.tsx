@@ -22,7 +22,7 @@ const Main = () => {
     </div>
 
     <div className="container mx-auto px-5">
-        <div className="grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+        <div className="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-5">
           {data.results.map((data: MovieType) => (
             <MovieCard 
               key={data.id}

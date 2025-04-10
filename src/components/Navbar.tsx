@@ -49,7 +49,7 @@ const Navbar = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                   />
-                  <label htmlFor="search">
+                  <label htmlFor="search" onClick={() => navigate("/search")}> 
                     <Search />
                   </label>
                 </form>

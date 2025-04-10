@@ -27,7 +27,31 @@ export const tmdbApi = createApi({
             query: (id) => `movie/${id}/videos?language=en-US&api_key=${API_KEY}`
         }),
         getSearchedMovies: builder.query<DataType, {query: string; page: number}>({
-            query: (args) => `search/multi?query=${args.query}&include_adult=false&language=en-US&page=${args.page}&api_key=${API_KEY}`
+            query: (args) => `search/multi?query=${args.query}&include_adult=false&language=en-US&page=${args.page}&api_key=${API_KEY}`,
+            serializeQueryArgs: ({ queryArgs }) => {
+                return queryArgs.query
+            },
+            merge: (currentCache, newItems) => {
+                const cacheItems = currentCache?.results.filter((item) => item.poster_path !== undefined && item.poster_path !== null)
+                const filteredNewItems = newItems?.results.filter((item) => item.poster_path !== undefined && item.poster_path !== null)
+                
+                if (newItems.page === 1) return newItems
+                const uniqueItems = [
+                    ...(cacheItems || []),
+                    ...(filteredNewItems || []).filter(
+                      (newItem) =>
+                        !cacheItems?.some((cacheItem) => cacheItem.id === newItem.id)
+                    ),
+                ];
+              
+                return {
+                    ...newItems,
+                    results: uniqueItems,
+                };
+            },
+            forceRefetch({ currentArg, previousArg }) {
+                return currentArg?.page !== previousArg?.page
+            }
         })
     })
 })

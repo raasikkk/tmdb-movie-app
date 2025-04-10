@@ -81,7 +81,7 @@ const Details = () => {
                     <span>Revenue: {data?.revenue}</span>
                 </div>
                 <Divider />
-                <p>Director: {director[0].original_name}</p>
+                <p>Director: {director[0]?.original_name}</p>
                 
                 <button onClick={() => setIsVideoOpen(true)} className="block lg:hidden w-full my-4 border-2 text-xl font-medium p-2 rounded-md transition hover:opacity-50">
                     Play Now
