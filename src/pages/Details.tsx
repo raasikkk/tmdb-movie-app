@@ -6,19 +6,21 @@ import moment from "moment"
 import { CastType, CrewType } from "../types/MovieType"
 import VideoPlay from "../components/VideoPlay"
 import { useState } from "react"
+import ErrorPage from "./ErrorPage"
 
 const Details = () => {
     const { id } = useParams()
-    const { data, isLoading, error } = useGetMovieDetailsQuery(id)
-    const { data: castData } = useGetMovieCastQuery(id)
+    const { data, isLoading, isFetching, error } = useGetMovieDetailsQuery(id)
+    const { data: castData, isLoading: isCastLoading, isFetching: isCastFetching, error: castError } = useGetMovieCastQuery(id)
     const [isVideoOpen, setIsVideoOpen] = useState(false)
 
     function closeVideo() {
         setIsVideoOpen(false)
     }
 
-    if (isLoading) return <Loader />
-    if (error) return <div>error</div>
+    if (isLoading || isFetching || isCastLoading || isCastFetching) return <Loader />
+    if (error || castError || !data || !castData) return <ErrorPage />
+
 
     const duration = (data.runtime / 60)?.toFixed(1).split(".")
     const director = castData.crew.filter((person: CrewType) => person.job === "Director")
@@ -26,7 +28,6 @@ const Details = () => {
 
   return (
     <>
-        
         <div className='w-full h-[280px] relative block'>
             <div className='w-full h-full'>
                 <img
