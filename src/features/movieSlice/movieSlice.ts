@@ -8,8 +8,55 @@ export const tmdbApi = createApi({
     reducerPath: 'tmdbApi',
     baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3/" }),
     endpoints: (builder) => ({
-        getPopularMovies: builder.query<DataType, void>({
-            query: () => `movie/popular?language=en-US&page=1&api_key=${API_KEY}`
+        getPopularMovies: builder.query<DataType, number>({
+            query: (page) => `movie/popular?language=en-US&page=${page}&api_key=${API_KEY}`,
+            serializeQueryArgs: ({ endpointName }) => endpointName,
+            merge: (currentCache, newItems) => {
+                const cacheItems = currentCache?.results.filter((item) => item.poster_path !== undefined && item.poster_path !== null)
+                const filteredNewItems = newItems?.results.filter((item) => item.poster_path !== undefined && item.poster_path !== null)
+                
+                if (newItems.page === 1) return newItems
+                const uniqueItems = [
+                    ...(cacheItems || []),
+                    ...(filteredNewItems || []).filter(
+                      (newItem) =>
+                        !cacheItems?.some((cacheItem) => cacheItem.id === newItem.id)
+                    ),
+                ];
+              
+                return {
+                    ...newItems,
+                    results: uniqueItems,
+                };
+            },
+            forceRefetch({ currentArg, previousArg }) {
+                return currentArg !== previousArg
+            }
+        }),
+        getPopularTvShows: builder.query<DataType, number>({
+            query: (page) => `tv/popular?language=en-US&page=${page}&api_key=${API_KEY}`,
+            serializeQueryArgs: ({ endpointName }) => endpointName,
+            merge: (currentCache, newItems) => {
+                const cacheItems = currentCache?.results.filter((item) => item.poster_path !== undefined && item.poster_path !== null)
+                const filteredNewItems = newItems?.results.filter((item) => item.poster_path !== undefined && item.poster_path !== null)
+                
+                if (newItems.page === 1) return newItems
+                const uniqueItems = [
+                    ...(cacheItems || []),
+                    ...(filteredNewItems || []).filter(
+                      (newItem) =>
+                        !cacheItems?.some((cacheItem) => cacheItem.id === newItem.id)
+                    ),
+                ];
+              
+                return {
+                    ...newItems,
+                    results: uniqueItems,
+                };
+            },
+            forceRefetch({ currentArg, previousArg }) {
+                return currentArg !== previousArg
+            }
         }),
         getTopRatedMovies: builder.query<DataType, void>({
             query: () => `movie/top_rated?language=en-US&page=1&api_key=${API_KEY}`
@@ -58,6 +105,7 @@ export const tmdbApi = createApi({
 
 export const { 
     useGetPopularMoviesQuery, 
+    useGetPopularTvShowsQuery,
     useGetTopRatedMoviesQuery, 
     useGetUpcomingMoviesQuery,
     useGetMovieDetailsQuery,

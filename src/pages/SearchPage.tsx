@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { useGetSearchedMoviesQuery } from "../features/movieSlice/movieSlice"
 import MovieCard from "../components/MovieCard"
-import Loader from "../components/Loader/Loader"
+// import Loader from "../components/Loader/Loader"
 import { Search } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import ErrorPage from "./ErrorPage"
@@ -48,7 +48,7 @@ const SearchPage = () => {
         return () => observer.disconnect()
     }, [isFetching, data?.total_pages, page])
 
-    if (isLoading) return <Loader />
+    // if (isLoading) return <Loader />
     if (error) return <ErrorPage />
 
   return (
@@ -66,6 +66,10 @@ const SearchPage = () => {
                     onChange={(e) => setMobileQuery(e.target.value)}
                   />
                 </form>
+
+                {isLoading && (
+                    <div className="mt-5 text-center">Loading...</div>
+                )}
             
                 {data && data?.results?.length > 0 ? (
                     <>
@@ -84,7 +88,6 @@ const SearchPage = () => {
                     <div className="flex flex-col gap-4 justify-center items-center w-full h-[75vh]">
                         <h2 className="text-5xl font-bold">Oops !</h2>
                         <p className="flex items-center gap-2"><Search /> We found 0 results for your search</p>
-                        <p className="font-semibold text-lg mt-5">"{query}"</p>
                     </div>
                 )}
             

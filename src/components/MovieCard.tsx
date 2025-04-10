@@ -17,7 +17,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
             />
             <div className="w-full p-3 backdrop-brightness-20 rounded-b-xl z-20">
                 <div className="flex justify-between items-center gap-1">
-                    <h3 className="text-white w-3/4 text-sm sm:text-lg font-semibold text-ellipsis line-clamp-1">{data.original_title}</h3>
+                    <h3 className="text-white w-3/4 text-sm sm:text-lg font-semibold text-ellipsis line-clamp-1">{data.original_title || data.original_name}</h3>
                     <Bookmark className="size-5 sm:size-6" />
                 </div>
                 <div className="hidden sm:flex mt-2 justify-between">

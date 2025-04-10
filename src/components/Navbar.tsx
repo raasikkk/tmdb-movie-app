@@ -14,6 +14,10 @@ const Navbar = () => {
     }
   }, [query])
 
+  useEffect(() => {
+    setQuery(removeSpace)
+  }, [navigate])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
   }
