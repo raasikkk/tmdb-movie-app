@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 w-full h-16 z-40 backdrop-brightness-50">
+      <div className="fixed top-0 w-full h-16 z-40 backdrop-brightness-50 text-white">
         <div className="container mx-auto px-5">
             {/* Desktop */}
             <div className="flex justify-between items-center py-1 lg:p-0">
@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="block md:hidden fixed bottom-0 w-full z-40 bg-black h-16">
+      <div className="block md:hidden fixed bottom-0 w-full z-40 bg-black h-16 text-white">
         <div className="container mx-auto ">
           <div className="flex justify-around items-center py-3">
             <Link to="/" className="mobile-link text-sm gap-1">

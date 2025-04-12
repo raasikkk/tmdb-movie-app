@@ -28,7 +28,7 @@ const Details = () => {
 
   return (
     <>
-        <div className='w-full h-[280px] relative block'>
+        <div className='w-full h-[280px] relative block text-white'>
             <div className='w-full h-full'>
                 <img
                     src={`https://image.tmdb.org/t/p/original/${data?.backdrop_path}`}
@@ -38,7 +38,7 @@ const Details = () => {
             <div className='absolute w-full h-full top-0 bg-gradient-to-t from-neutral-900/90 to-transparent'></div>    
         </div>
 
-        <div className="flex flex-col container mx-auto px-5 relative">
+        <div className="flex flex-col container mx-auto px-5 relative text-white">
             <div className="hidden lg:flex flex-col gap-3 absolute -top-32  w-60">
                 <img 
                     src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`} 
@@ -51,8 +51,8 @@ const Details = () => {
 
 
             <div className="lg:ml-68">
-                <h1 className="text-5xl font-semibold">{data?.original_title}</h1>
-                <p className="text-black/40 mt-2">{data?.tagline}</p>
+                <h1 className="text-5xl font-bold">{data?.original_title}</h1>
+                <p className="mt-2">{data?.tagline}</p>
                 <Divider />
                 <div className="flex items-center gap-3">
                     <span>Rating: {Number(data?.vote_average).toFixed(1)}+</span>
@@ -66,7 +66,7 @@ const Details = () => {
                     <span>Duration: {duration[0]}h {duration[1]}m</span>
                 </div>
                 <Divider />
-                <h2 className="text-2xl font-semibold">Overview</h2>
+                <h2 className="text-3xl font-semibold">Overview</h2>
                 <p className="mt-2">{data?.overview}</p>
                 <Divider />
                 <div className="flex items-center gap-3">
@@ -88,7 +88,7 @@ const Details = () => {
                 </button>
 
                 <Divider />
-                <h2 className="text-2xl font-semibold">Cast:</h2>
+                <h2 className="text-3xl font-semibold">Cast:</h2>
                 <div className="mt-5 grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-7 gap-10">
                     {cast.map((person: CastType) => (
                         <div 
@@ -100,7 +100,7 @@ const Details = () => {
                                 alt={person?.original_name}
                                 className="rounded-full aspect-square"
                             />
-                            <p className="text-ellipsis text-center line-clamp-2 text-sm">{person?.original_name}</p>
+                            <p className="text-ellipsis text-center line-clamp-2 text-base font-medium">{person?.original_name}</p>
                         </div>
                     ))}
                 </div>

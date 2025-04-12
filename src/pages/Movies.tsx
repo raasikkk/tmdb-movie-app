@@ -27,7 +27,7 @@ const Movies = () => {
 
   return (
     <>
-      <div className="mt-16 min-h-[80vh] container mx-auto px-5">
+      <div className="mt-16 min-h-[80vh] container mx-auto px-5 text-white">
         <h1 className="mt-5 pt-5 text-2xl font-semibold">Popular Movies</h1>
 
         <div className="">
