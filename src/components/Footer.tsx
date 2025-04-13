@@ -9,9 +9,9 @@ const Footer = () => {
             <p className="text-center ">
                 Built by 
                  <span className="font-semibold"> Zhankeldyuly Rasul </span> 
-                 - <span className="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-orange-500">
+                 - <span className="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-orange-500 hover:scale-105 transition cursor-pointer">
                     <span className="relative text-white font-bold"> raasikkk</span>
-                    </span>
+                   </span>
             </p>
             
             <div className="flex items-center justify-center gap-3">

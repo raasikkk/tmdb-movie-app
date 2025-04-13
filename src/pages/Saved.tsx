@@ -2,12 +2,16 @@ import { useGetMovieDetailsQuery } from '../features/movieSlice/movieSlice';
 import MovieCard from '../components/MovieCard';
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../hooks/hooks';
+import toast from 'react-hot-toast';
 
 const Watchlist = () => {
   const { items } = useAppSelector((state) => state.watchlist);
   const { isLoggedin } = useAppSelector((state) => state.auth)
 
-  if (!isLoggedin) return <Navigate to="/auth/login"/>
+  if (!isLoggedin) {
+    toast.error("Please sign in to account")
+    return <Navigate to="/auth/login" />
+  }
 
   return (
     <div className="mt-16 min-h-[80vh] container mx-auto px-5 text-white">

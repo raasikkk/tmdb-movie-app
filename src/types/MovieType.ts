@@ -6,6 +6,7 @@ export type MovieType = {
     original_language: string;
     original_title?: string;
     original_name?: string;
+    name?: string;
     overview: string;
     popularity: number;
     poster_path: string;

@@ -22,9 +22,9 @@ const Details = () => {
     if (error || castError || !data || !castData) return <ErrorPage />
 
 
-    const duration = (data.runtime / 60)?.toFixed(1).split(".")
-    const director = castData.crew.filter((person: CrewType) => person.job === "Director")
-    const cast = castData.cast.filter((person: CastType) => person.profile_path !== null).slice(0, 20)
+    const duration = (data?.runtime / 60)?.toFixed(1).split(".")
+    const director = castData?.crew.filter((person: CrewType) => person?.job === "Director")
+    const cast = castData?.cast.filter((person: CastType) => person?.profile_path !== null).slice(0, 20)
 
   return (
     <>
@@ -44,7 +44,10 @@ const Details = () => {
                     src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`} 
                     className=" rounded-md"
                 />
-                <button onClick={() => setIsVideoOpen(true)} className="w-full border-2 text-xl font-medium p-2 rounded-md transition hover:-translate-y-1">
+                <button 
+                    onClick={() => setIsVideoOpen(true)} 
+                    className="border-2 px-4 py-2 text-white text-lg font-medium rounded-md hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-105"
+                >
                     Play Now
                 </button>
             </div>
@@ -63,7 +66,9 @@ const Details = () => {
 
                     <span>|</span>
 
-                    <span>Duration: {duration[0]}h {duration[1]}m</span>
+                    {duration && (
+                        <span>Duration: {duration[0]}h {duration[1]}m</span>
+                    )}
                 </div>
                 <Divider />
                 <h2 className="text-3xl font-semibold">Overview</h2>
@@ -83,7 +88,7 @@ const Details = () => {
                 <Divider />
                 <p>Director: {director[0]?.original_name}</p>
                 
-                <button onClick={() => setIsVideoOpen(true)} className="block lg:hidden w-full my-4 border-2 text-xl font-medium p-2 rounded-md transition hover:opacity-50">
+                <button onClick={() => setIsVideoOpen(true)} className="block lg:hidden w-full my-4 border-2 text-xl font-medium p-2 rounded-md transition hover:scale-105 hover:bg-gradient-to-l from-red-700 to-orange-500">
                     Play Now
                 </button>
 

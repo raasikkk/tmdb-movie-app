@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { useGetSearchedMoviesQuery } from "../features/movieSlice/movieSlice"
 import MovieCard from "../components/MovieCard"
-// import Loader from "../components/Loader/Loader"
 import { Search } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import ErrorPage from "./ErrorPage"
@@ -53,19 +52,23 @@ const SearchPage = () => {
 
   return (
     <>
-        <div className="mt-16 min-h-[80vh] container mx-auto px-5 flex flex-col w-full">
-            <h1 className="mt-5 text-2xl font-semibold">Search Results:</h1>
+        <div className="mt-16 min-h-[80vh] container mx-auto px-5 flex flex-col w-full text-white">
+                <h1 className="mt-5 text-2xl font-semibold">Search Results:</h1>
 
-                <form className="mt-5 flex items-center justify-between gap-3 sm:hidden" onSubmit={handleSubmit}>
+                <form className="mt-5 relative flex items-center justify-between gap-3 sm:hidden" onSubmit={handleSubmit}>
                   <input 
                     type="text" 
                     id="search"
-                    className="block p-1 border-2 rounded-md outline-none w-full placeholder:text-gray-500"
+                    className="absolute mt-3 block p-1 border-2 rounded-md outline-none w-full placeholder:text-gray-500"
                     placeholder="Search here..."
                     value={mobileQuery}
                     onChange={(e) => setMobileQuery(e.target.value)}
                   />
                 </form>
+
+                {/* {!query && (
+                    <div className="mt-5 flex items-center gap-3 text-gray-600"><Search /> Start typing to search movies</div>
+                )} */}
 
                 {isLoading && (
                     <div className="mt-5 text-center">Loading...</div>
