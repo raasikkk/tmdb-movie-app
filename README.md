@@ -26,12 +26,4 @@ A responsive movie browsing application built with React and TypeScript, featuri
 
 ## 📸 Screenshots
 
-> _Add screenshots here if you want — homepage, movie detail, auth, etc._
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/movie-app.git
-cd movie-app
+<p><img src="https://github.com/raasikkk/tmdb-movie-app/blob/main/DEMO.png" alt="preview" /></p>
