@@ -1,11 +1,15 @@
 import Banner from "@/components/Banner"
+import Loader from "@/components/Loader/Loader"
 import SliderComponent from "@/components/SliderComponent"
 import { useGetPopularMoviesQuery, useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery } from "@/features/movieSlice/movieSlice"
 
 const Main = () => {
-  const { data: UpcomingMovies } = useGetUpcomingMoviesQuery()
-  const { data: TopMovies } = useGetTopRatedMoviesQuery()
-  const { data: PopularMovies } = useGetPopularMoviesQuery(1)
+  const { data: UpcomingMovies, isLoading: isUpcomingLoading } = useGetUpcomingMoviesQuery()
+  const { data: TopMovies, isLoading: isTopLoading } = useGetTopRatedMoviesQuery()
+  const { data: PopularMovies, isLoading: isPopularLoading } = useGetPopularMoviesQuery(1)
+  
+  if (isUpcomingLoading || isTopLoading || isPopularLoading) return <Loader />
+
   return (
     <>
       <Banner />

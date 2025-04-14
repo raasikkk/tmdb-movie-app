@@ -13,7 +13,7 @@ const Details = () => {
     const { id } = useParams()
     const { data, isLoading, isFetching, error } = useGetMovieDetailsQuery(id)
     const { data: castData, isLoading: isCastLoading, isFetching: isCastFetching, error: castError } = useGetMovieCastQuery(id)
-    const { data: SimilarMovies } = useGetSimilarMoviesQuery(id)
+    const { data: SimilarMovies, isLoading: isSimilarLoading } = useGetSimilarMoviesQuery(id)
 
     const [isVideoOpen, setIsVideoOpen] = useState(false)
 
@@ -21,7 +21,7 @@ const Details = () => {
         setIsVideoOpen(false)
     }
 
-    if (isLoading || isFetching || isCastLoading || isCastFetching) return <Loader />
+    if (isLoading || isFetching || isCastLoading || isCastFetching || isSimilarLoading) return <Loader />
     if (error || castError || !data || !castData) return <ErrorPage />
 
 
@@ -59,7 +59,7 @@ const Details = () => {
 
 
             <div className="lg:ml-68">
-                <h1 className="text-5xl font-bold">{data?.original_title}</h1>
+                <h1 className="text-3xl md:text-5xl font-bold">{data?.original_title}</h1>
                 <p className="mt-2">{data?.tagline}</p>
                 <Divider />
                 <div className="flex items-center gap-3">
@@ -76,7 +76,7 @@ const Details = () => {
                     )}
                 </div>
                 <Divider />
-                <h2 className="text-3xl font-semibold">Overview</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold">Overview</h2>
                 <p className="mt-2">{data?.overview}</p>
                 <Divider />
                 <div className="flex items-center gap-3">
@@ -98,7 +98,7 @@ const Details = () => {
                 </button>
 
                 <Divider />
-                <h2 className="text-3xl font-semibold">Cast:</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold">Cast:</h2>
                 <div className="mt-5 grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-7 gap-10">
                     {cast.map((person: CastType) => (
                         <div 
