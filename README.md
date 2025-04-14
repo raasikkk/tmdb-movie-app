@@ -1,6 +1,6 @@
 # Movie app
 
-The application utilizes the following technologies: <br />
+The application utilizes the following technologies: <br /><br />
 [![My Skills](https://skillicons.dev/icons?i=ts,react,redux,firebase,tailwind)](https://skillicons.dev)
 
 Currently, two official plugins are available:
