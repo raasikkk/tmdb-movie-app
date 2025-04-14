@@ -17,9 +17,11 @@ const Watchlist = () => {
     <div className="mt-16 min-h-[80vh] container mx-auto px-5 text-white">
       <h1 className="mt-5 pt-5 text-2xl font-semibold">Your Watchlist</h1>
       <div className="mt-5 grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-5">
-        {items.map((movieId: number) => (
+        {items.length > 0 ? items.map((movieId: number) => (
           <WatchlistItem key={movieId} movieId={movieId} />
-        ))}
+        )) : (
+          <div>Nothing here yet...</div>
+        )}
       </div>
     </div>
   );

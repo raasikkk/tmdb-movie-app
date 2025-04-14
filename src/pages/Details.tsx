@@ -1,17 +1,20 @@
 import Divider from "../components/Divider"
 import Loader from "../components/Loader/Loader"
-import { useGetMovieCastQuery, useGetMovieDetailsQuery } from "../features/movieSlice/movieSlice"
+import { useGetMovieCastQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from "../features/movieSlice/movieSlice"
 import { useParams } from "react-router-dom"
 import moment from "moment"
 import { CastType, CrewType } from "../types/MovieType"
 import VideoPlay from "../components/VideoPlay"
 import { useState } from "react"
 import ErrorPage from "./ErrorPage"
+import SliderComponent from "@/components/SliderComponent"
 
 const Details = () => {
     const { id } = useParams()
     const { data, isLoading, isFetching, error } = useGetMovieDetailsQuery(id)
     const { data: castData, isLoading: isCastLoading, isFetching: isCastFetching, error: castError } = useGetMovieCastQuery(id)
+    const { data: SimilarMovies } = useGetSimilarMoviesQuery(id)
+
     const [isVideoOpen, setIsVideoOpen] = useState(false)
 
     function closeVideo() {
@@ -25,6 +28,8 @@ const Details = () => {
     const duration = (data?.runtime / 60)?.toFixed(1).split(".")
     const director = castData?.crew.filter((person: CrewType) => person?.job === "Director")
     const cast = castData?.cast.filter((person: CastType) => person?.profile_path !== null).slice(0, 20)
+
+    // Similar Movies
 
   return (
     <>
@@ -112,6 +117,12 @@ const Details = () => {
 
             </div>
         </div>
+
+        <h2 className="px-5 sm:px-10 lg:px-20 mt-5 py-5 text-2xl font-semibold text-white">Similar Movies</h2>
+        {SimilarMovies && (
+            <SliderComponent data={SimilarMovies.results}/>
+        )}
+
 
         {
             isVideoOpen && <VideoPlay data={data} close={closeVideo}/>

@@ -73,6 +73,9 @@ export const tmdbApi = createApi({
         getMovieVideo: builder.query({
             query: (id) => `movie/${id}/videos?language=en-US&api_key=${API_KEY}`
         }),
+        getSimilarMovies: builder.query({
+            query: (id) => `movie/${id}/similar?language=en-US&page=1&api_key=${API_KEY}`
+        }),
         getSearchedMovies: builder.query<DataType, {query: string; page: number}>({
             query: (args) => `search/movie?query=${args.query}&include_adult=false&language=en-US&page=${args.page}&api_key=${API_KEY}`,
             serializeQueryArgs: ({ queryArgs }) => {
@@ -111,5 +114,6 @@ export const {
     useGetMovieDetailsQuery,
     useGetMovieCastQuery,
     useGetMovieVideoQuery,
+    useGetSimilarMoviesQuery,
     useGetSearchedMoviesQuery,
 } = tmdbApi
