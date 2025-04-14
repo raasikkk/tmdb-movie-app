@@ -1,6 +1,7 @@
-# React + TypeScript + Vite
+# Movie app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The application utilizes the following technologies: <br />
+[![My Skills](https://skillicons.dev/icons?i=ts,react,redux,firebase,tailwind)](https://skillicons.dev)
 
 Currently, two official plugins are available:
 
