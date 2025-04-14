@@ -1,55 +1,37 @@
-# Movie app
+# 🎬 Movie App
 
-The application utilizes the following technologies: <br /><br />
+A responsive movie browsing application built with React and TypeScript, featuring user authentication, favorites management, and real-time database support. Powered by the [TMDB API](https://www.themoviedb.org/documentation/api) for movie data and Firebase for authentication and Firestore database.
+
+[🔗 Live Demo](https://tmdb-movie-app-chi.vercel.app/)
+
+## 🛠 Tech Stack
+
 [![My Skills](https://skillicons.dev/icons?i=ts,react,redux,firebase,tailwind)](https://skillicons.dev)
 
-Currently, two official plugins are available:
+- **React & TypeScript** – Component-based UI with strong type safety  
+- **Redux Toolkit** – Efficient state management  
+- **Tailwind CSS** – Modern and responsive UI styling  
+- **Firebase Authentication** – Secure user login/sign-up (Email/Password)  
+- **Firestore Database** – Real-time database to store user favorites  
+- **TMDB API** – Rich movie database with trending, search, and details
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🔍 **Search movies** by title  
+- 🏆 **View trending movies**  
+- 📄 **Detailed movie pages** with ratings, genres, and more  
+- ❤️ **Add/remove favorites** (stored per user)  
+- 🔐 **Authentication** with Firebase (sign up, sign in, sign out)  
+- 📱 **Responsive design** for all screen sizes  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📸 Screenshots
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+> _Add screenshots here if you want — homepage, movie detail, auth, etc._
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Clone the repository
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+```bash
+git clone https://github.com/your-username/movie-app.git
+cd movie-app
